@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 const Header = () => {
 
     const headerRef = useRef(null)
+    const menuRef = useRef(null)
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
@@ -19,7 +20,21 @@ const Header = () => {
         stickyHeaderFunc()
 
         return window.removeEventListener('scroll', stickyHeaderFunc)
-    }, [])
+    }, []);
+
+    const handleClick = e => {
+        e.preventDefault()
+
+        const targetAttr = e.target.getAttribute('href');
+        const location = document.querySelector(targetAttr).offsetTop;
+
+        window.scrollTo({
+            top: location - 80,
+            left: 0,
+        });
+    };
+
+    const toggleMenu = () => menuRef.current.classList.toggle('show__menu')
 
     return <header
         ref={headerRef}
@@ -41,12 +56,12 @@ const Header = () => {
 
                 {/*=========== menu-start ============= */}
 
-                <div className="menu">
+                <div className="menu" ref={menuRef} onClick={toggleMenu}>
                     <ul className='flex items-center gap-10 '>
-                        <li><a className=' text-smallTextColor font-[600]' href="#about">About</a></li>
-                        <li><a className=' text-smallTextColor font-[600]' href="#services">Services</a></li>
-                        <li><a className=' text-smallTextColor font-[600]' href="#portfolio">Portfolio</a></li>
-                        <li><a className=' text-smallTextColor font-[600]' href="#contact">Contact</a></li>
+                        <li><a onClick={handleClick} className=' text-smallTextColor font-[600]' href="#about">About</a></li>
+                        <li><a onClick={handleClick} className=' text-smallTextColor font-[600]' href="#services">Services</a></li>
+                        <li><a onClick={handleClick} className=' text-smallTextColor font-[600]' href="#portfolio">Portfolio</a></li>
+                        <li><a onClick={handleClick} className=' text-smallTextColor font-[600]' href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -58,7 +73,7 @@ const Header = () => {
                     <button className='flex items-center gap-2 text-smallTextColor font-semibold border border-solid border-smallTextColor py-2 px-4 rounded-lg max-h-10 hover:bg-smallTextColor hover:text-white hover:font-medium ease-in duration-300'>
                         <i className='ri-send-plane-line'></i> Let's Talk
                     </button>
-                    <span className=' text-2xl text-smallTextColor md:hidden cursor-pointer'><i className='ri-menu-line'></i></span>
+                    <span onClick={toggleMenu} className=' text-2xl text-smallTextColor md:hidden cursor-pointer'><i className='ri-menu-line'></i></span>
                 </div>
 
                 {/*=========== menu-right-end ============= */}
