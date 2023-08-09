@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-Live WebSite:(https://64d397d5765d6c68e577a8fa--stellar-tarsier-894d85.netlify.app/).
+Live WebSite:[Create React App] (https://64d397d5765d6c68e577a8fa--stellar-tarsier-894d85.netlify.app/).
 
 Our features:-
 
@@ -10,7 +10,7 @@ Our features:-
 
 All the packages used in this website:-
 
-☞ Tailwind css
+☞ tailwind css
 ☞ React Toastify
 ☞ Font Awesome Icons
 ☞ React Router
